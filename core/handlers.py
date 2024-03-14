@@ -71,3 +71,9 @@ async def input_name(message: Message, state: FSMContext):
     await sql_connector.add_user(message.from_user.id, character_data['name'], character_data['race_id'])
 
 
+@router.message(F.text == 'hi')
+async def hi(message: Message):
+    await message.answer('hello')
+
+
+
