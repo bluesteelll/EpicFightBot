@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from config import KILLS_TO_LEVEL_UP
 
 
+# Interface to access and manipulate database
 class SQliteConnector:
     def __init__(self, path):
         self.connection = sqlite3.connect(path)
@@ -38,12 +39,11 @@ class SQliteConnector:
         );
         ''')
 
+        # admins table
         self.cursor.execute('''
                         CREATE TABLE IF NOT EXISTS Admins (
                         id INTEGER PRIMARY KEY);
                         ''')
-
-        # await self.add_user(1121111, 'huilo', 2)
 
     async def add_user(self, uid: int, name: str, rid: int):
         self.cursor.execute(f'''
@@ -184,10 +184,3 @@ class SQliteConnector:
         return self.cursor.execute(f'''
                         SELECT * FROM Races WHERE id = {rid};
                         ''').fetchone()['name']
-    # def add_race(self, name: str, base_health: int, base_damage: int):
-    #  self.cursor.execute(f'''
-    #            INSERT INTO Races (name, base_health, base_damage)
-    #            VALUES ('{name}', {base_health}, {base_damage});''')
-    #    self.connection.commit()
-
-# f = SQliteConnector('db.db')

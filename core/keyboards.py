@@ -1,6 +1,8 @@
 from aiogram.types import (InlineKeyboardMarkup, InlineKeyboardButton)
 from config import YOUTUBE_LINK, WIKI_LINK
 
+# Keyboards and markups
+
 start_inline_buttons = [
     [InlineKeyboardButton(text='Создать персонажа',
                           callback_data='create_character')],
@@ -26,16 +28,16 @@ help_inline_buttons = [
 ]
 
 main_menu_inline_buttons = [[InlineKeyboardButton(text='Обновить профиль',
-                                             callback_data='profile')],
-                        [InlineKeyboardButton(text='Увеличить уровень',
-                                             callback_data='open_level_up')],
-                       [InlineKeyboardButton(text='Справка',
-                                             callback_data='help')]]
+                                                  callback_data='profile')],
+                            [InlineKeyboardButton(text='Увеличить уровень',
+                                                  callback_data='open_level_up')],
+                            [InlineKeyboardButton(text='Справка',
+                                                  callback_data='help')]]
 
 level_up_buttons = [[InlineKeyboardButton(text='Здоровье',
-                                             callback_data='upgrade_health')],
-                        [InlineKeyboardButton(text='Урон',
-                                             callback_data='upgrade_damage')],
+                                          callback_data='upgrade_health')],
+                    [InlineKeyboardButton(text='Урон',
+                                          callback_data='upgrade_damage')],
                     [InlineKeyboardButton(text='Назад',
                                           callback_data='back')]]
 

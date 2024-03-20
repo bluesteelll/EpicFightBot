@@ -3,29 +3,21 @@ from aiogram.types import Message, CallbackQuery
 from aiogram import Router, F, Bot
 import core.keyboards
 import data.text_data
-from aiogram.fsm.state import StatesGroup, State
+from aiogram.fsm.state import State
 from aiogram.fsm.context import FSMContext
 from utils.sql_connector import SQliteConnector
 from utils.giphy_connector import GiphyConnector
 from datetime import datetime
 from config import DB_PATH
+from core.states import CharacterCreationStatesGroup, MenuStatesGroup
 
-
-class CharacterCreationStatesGroup(StatesGroup):
-    race_id = State()
-    name = State()
-
-
-class MenuStatesGroup(StatesGroup):
-    main_menu = State()
-    start = State()
-    level_up = State()
-
-
+# Setup router and utilities
 router = Router()
 sql_connector = SQliteConnector(DB_PATH)
 giphy_connector = GiphyConnector()
 
+
+# Support functions
 
 async def _accept_race(callback: CallbackQuery, state: FSMContext, race_id):
     await state.update_data(race_id=race_id)
@@ -67,6 +59,8 @@ async def _open_level_up_menu(callback: CallbackQuery):
          Урон: {user['damage']}''',
                                      reply_markup=core.keyboards.level_up_keyboard_markup)
 
+
+# Handlers
 
 @router.message(CommandStart())
 async def cmd_start(message: Message, state: FSMContext):
