@@ -11,7 +11,7 @@ class SQliteConnector:
         self.connection.commit()
         self.cursor = self.connection.cursor()
 
-        #race table
+        # race table
         self.cursor.execute('''
                 CREATE TABLE IF NOT EXISTS Races (
                 id INTEGER PRIMARY KEY,
@@ -21,7 +21,7 @@ class SQliteConnector:
                 );
                 ''')
 
-        #users table
+        # users table
         self.cursor.execute('''
         CREATE TABLE IF NOT EXISTS Users (
         id INTEGER PRIMARY KEY,
@@ -38,7 +38,12 @@ class SQliteConnector:
         );
         ''')
 
-        #await self.add_user(1121111, 'huilo', 2)
+        self.cursor.execute('''
+                        CREATE TABLE IF NOT EXISTS Admins (
+                        id INTEGER PRIMARY KEY);
+                        ''')
+
+        # await self.add_user(1121111, 'huilo', 2)
 
     async def add_user(self, uid: int, name: str, rid: int):
         self.cursor.execute(f'''
@@ -88,6 +93,7 @@ class SQliteConnector:
                                 WHERE id = {uid};
                                 ''')
         self.connection.commit()
+
     async def reduce_level_points(self, uid: int):
         self.cursor.execute(f'''
                                 UPDATE Users
@@ -126,9 +132,6 @@ class SQliteConnector:
                 await self.level_up(uaid)
                 _lvl_up = True
 
-
-
-
         self.cursor.execute(f'''
         UPDATE Users SET
                         dead_until = '{datetime.now() + timedelta(seconds=60)}',
@@ -153,6 +156,9 @@ class SQliteConnector:
                         SELECT level_points FROM Users WHERE id = {uid};
                         ''').fetchone()['level_points']
 
+    async def get_users_id(self):
+        return self.cursor.execute(f'''SELECT id FROM Users;''').fetchall()
+
     async def get_health(self, uid: int):
         return self.cursor.execute(f'''
                         SELECT health FROM Users WHERE id = {uid};
@@ -164,14 +170,24 @@ class SQliteConnector:
                         ''').fetchone()['dead_until'])
 
         return None if d < datetime.now() else d
+
+    async def is_admin(self, uid: int):
+        return len(self.cursor.execute(f'''
+                        SELECT * FROM Admins WHERE id = {uid};
+                        ''').fetchall()) > 0
+
+    async def clear_users(self):
+        self.cursor.execute(f'''DELETE FROM Users;''')
+        self.connection.commit()
+
     async def get_race_name(self, rid: int):
         return self.cursor.execute(f'''
                         SELECT * FROM Races WHERE id = {rid};
                         ''').fetchone()['name']
-    #def add_race(self, name: str, base_health: int, base_damage: int):
+    # def add_race(self, name: str, base_health: int, base_damage: int):
     #  self.cursor.execute(f'''
     #            INSERT INTO Races (name, base_health, base_damage)
     #            VALUES ('{name}', {base_health}, {base_damage});''')
     #    self.connection.commit()
 
-#f = SQliteConnector('db.db')
+# f = SQliteConnector('db.db')

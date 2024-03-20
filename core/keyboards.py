@@ -1,5 +1,5 @@
 from aiogram.types import (InlineKeyboardMarkup, InlineKeyboardButton)
-from data.text_data import YOUTUBE_LINK, WIKI_LINK
+from config import YOUTUBE_LINK, WIKI_LINK
 
 start_inline_buttons = [
     [InlineKeyboardButton(text='Создать персонажа',
