@@ -29,6 +29,7 @@ async def _get_user_profile_str(user_id):
     user = await sql_connector.get_user(user_id)
     return f'''Ваш профиль\n
             Персонаж: {user['name']}
+            Раса: {await sql_connector.get_race_name(user['rid'])}
             Уровень: {user['level']}
             Очков улучшения: {user['level_points']}
             Здоровье: {user['health']}
