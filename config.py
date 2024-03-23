@@ -2,7 +2,7 @@
 # Configuration file
 
 TOKEN = '7184762456:AAGesEvpUcYIRM46M2pGN4KMmaB67Ixmsuc'
-YOUTUBE_LINK = 'https://www.youtube.com/'
+YOUTUBE_LINK = 'https://www.youtube.com/channel/UClFyTzg2_vSOx3jQlWEmAEw'
 WIKI_LINK = 'https://github.com/bluesteelll/EpicFightBot/tree/master?tab=readme-ov-file#epicfightbot'
 KILLS_TO_LEVEL_UP = (3, 7, 12, 18, 25, 33, 42, 52)
 GIPHY_URL = 'http://api.giphy.com/v1/gifs/random'

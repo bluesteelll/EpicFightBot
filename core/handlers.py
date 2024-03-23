@@ -73,7 +73,7 @@ async def cmd_start(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'help')
 async def callback_help(callback: CallbackQuery):
-    await callback.answer('')
+    await callback.answer('Помощь')
     await callback.message.edit_text(text='''''',
                                      reply_markup=core.keyboards.help_inline_keyboard_markup)
 
