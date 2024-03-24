@@ -37,5 +37,6 @@
 ### PS
 Проект находится в разработке, поэтому функционал неполон, и могут встречаться баги
 
-[видео](https://www.youtube.com/watch?v=qgJ-jf54KnY)
+[GitHub](https://github.com/bluesteelll/EpicFightBot)
+[Видео](https://www.youtube.com/watch?v=qgJ-jf54KnY)
   
